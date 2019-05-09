@@ -6,6 +6,20 @@
     <link rel="stylesheet" href="style.css">
 </head>
 
+<div>
 
+<h1>Films</h1>
+<?php
+
+	foreach($data as $row)
+	{
+        echo $row["Film"];
+        echo "<br>";
+        echo $row["Year"];
+        echo "<br>";
+	}
+	
+?>
+</div>
 
 </html>
