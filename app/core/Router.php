@@ -50,30 +50,29 @@ class Router
 			но для упрощения сразу сделаем редирект на страницу 404
 			*/
 			Router::ErrorPage404();
+			// echo "file no esist!";
 		}
 		
-		// создаем контроллер
-		$controller = new $controller_name;
-		$action = $action_name;
-		
-		if(method_exists($controller, $action))
+		if(class_exists($controller_name) && method_exists($controller_name, $action_name))
 		{
 			// вызываем действие контроллера
-			$controller->$action();
+			$controller = new $controller_name;
+			$controller->$action_name();
 		}
 		else
 		{
+			// echo "Controller or action does not exists";
 			// здесь также разумнее было бы кинуть исключение
 			Router::ErrorPage404();
 		}
 	
 	}
 	
-	function ErrorPage404()
+	static function ErrorPage404()
 	{
         $host = 'http://'.$_SERVER['HTTP_HOST'].'/';
-        header('HTTP/1.1 404 Not Found');
+		header('HTTP/1.1 404 Not Found');
 		header("Status: 404 Not Found");
-		header('Location:'.$host.'404');
+		header('Location:'.$host.'app/views/errors/'.'404.php');
     }
 }

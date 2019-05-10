@@ -1,1 +1,3 @@
 php -S localhost:8000 -c php.ini
+
+http, data types, difference between '' and "";
