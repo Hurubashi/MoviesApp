@@ -20,7 +20,6 @@ class Database {
         } catch (PDOException $e){
             self::$pdo = false;
             echo ($DB_DSN . $DB_USER . $DB_PASSWORD);
-            echo "Chto-to ne tak :(\n";
             echo $e->getMessage();
         }
     }

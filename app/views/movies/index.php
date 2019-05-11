@@ -18,8 +18,8 @@
             <option value="2"><p>Actors</p></option>
         </select>
     </div>
-    <input type='text' maxlength='100'>
-    <button>Search</button>
+    <input id='inputText' type='text' maxlength='100'>
+    <button onclick='search()'>Search</button>
 </div>
 
 <div class='movies-wrapper'>
@@ -37,9 +37,11 @@
         echo "<div class='movie'>";
         foreach($elem as $key=>$value)
         {
-            echo "<div class='movie-cell $key'>";
-                echo "<p>$value</p>";
-            echo "</div>";
+            if ($key != 'uid') {
+                echo "<div class='movie-cell $key'>";
+                    echo "<p>$value</p>";
+                echo "</div>";
+            }
         }
         echo "</div>";
 	}
@@ -47,6 +49,7 @@
 
 </div>
 
+<script src='/js/main.js'></script>
 
 </html>
 

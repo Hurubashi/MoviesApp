@@ -4,25 +4,25 @@ class Router
 {
 	static function start()
 	{
-		// контроллер и действие по умолчанию
+		// Default controller and action
 		$controller_name = 'Movies';
-		$action_name = 'main';
+		$action_name = 'index';
 		
 		$routes = explode('/', $_SERVER['REQUEST_URI']);
 
-		// получаем имя контроллера
+		// Get controller name
 		if ( !empty($routes[1]) )
 		{	
 			$controller_name = $routes[1];
 		}
 		
-		// получаем имя экшена
+		// Get action name
 		if ( !empty($routes[2]) )
 		{
 			$action_name = $routes[2];
 		}
 
-		// добавляем префиксы
+		// Change names to fit controller, model, action
 		$model_name = $controller_name.'Model';
 		$controller_name = $controller_name.'Controller';
 		$action_name = 'action_'.$action_name;

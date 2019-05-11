@@ -4,45 +4,35 @@ class MoviesModel extends Model
 {
 	public function get_data()
 	{	
-		return array(
-			
-			array(
-                'name' => 'Forest Dumb',
-				'year' => '2012',
-				'format' => 'DVD',
-				'actors' => 'Alex Dolbuin, Jack Daniels'
-			),
-			array(
-                'name' => 'Hole, big and black',
-				'year' => '2016',
-				'format' => 'TNT',
-				'actors' => 'Snoop Dogg, 2Pac'
-			),
-			array(
-                'name' => 'Big big Bang',
-				'year' => '2020',
-				'format' => 'TNT',
-				'actors' => 'John Nitroglycerin, Anna Tetryl, John Nitroglycerin, Anna Tetryl, John Nitroglycerin, Anna Tetryl'
-			),
-			array(
-                'name' => 'Forest Dumb',
-				'year' => '1994',
-				'format' => 'DVD',
-				'actors' => 'Alex Dolbuin, Jack Daniels'
-			),
-			array(
-                'name' => 'The Shawshank Redemption',
-				'year' => '2016',
-				'format' => 'TNT',
-				'actors' => 'Snoop Dogg, 2Pac'
-			),
-			array(
-                'name' => ' The Lord of the Rings: The Return of the King',
-				'year' => '2003',
-				'format' => 'TNT',
-				'actors' => 'John Nitroglycerin, Anna Tetryl, John Nitroglycerin, Anna Tetryl, John Nitroglycerin, Anna Tetryl'
-			)
-			// todo
-		);
+		$this->insert_data('Forest Dumb', 1994, 'DVD', 'Alex Dolbuin, Jack Daniels');
+
+		try {
+			$sql = "SELECT * FROM movie ORDER BY movie.name DESC";
+			$stmt = Database::$pdo->prepare($sql);
+			$stmt->execute();
+			$result = $stmt->fetchAll();
+		} catch (PDOException $e){
+			$result = handle_sql_errors($selectQuery, $e->getMessage());
+		}
+		return $result;
 	}
+
+	public function insert_data($name, $year, $format, $actors) {
+		$sql = "INSERT INTO movie(`uid`, `name`, `year`, `format`, `actors`) 
+							VALUES (:uid, :name, :year, :format, :actors)";
+		$stmt = Database::$pdo->prepare($sql);
+		$gg = uniqid($name);
+		$stmt->execute(['uid' => $gg, 'name' => $name, 
+						'year' => $year, 'format' => $format, 'actors' => $actors]);
+	}
+
+	function search_by($title, $name){
+		$sql = "SELECT * FROM movie WHERE $title = :$title";
+        $stmt = Database::$pdo->prepare($sql);
+        $stmt->execute([$title => $value]);
+        $result = $stmt->fetchAll();
+        return $result;
+	}
+
+
 }
