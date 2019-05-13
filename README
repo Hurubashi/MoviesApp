@@ -1,3 +1,7 @@
-php -S localhost:8000 -c php.ini
 
-http, data types, difference between '' and "";
+You could run app with 
+"php -S localhost:8000"
+or "php -S localhost:8000" -c php.ini"
+in case you have problems with connecting db
+write path to your mysql.sock file in php.ini and write
+"php -S localhost:8000" -c php.ini"

@@ -11,9 +11,13 @@ class MoviesController extends Controller
     
     function action_index()
 	{	
-        $data = $this->model->get_data();
+        $data = $this->model->getData();
         $this->view->generate('movies/index.php', $data);
         
+    }
+
+    function action_ajaxMovie() {
+        $this->view->generate('movies/ajaxMovie.php');
     }
     
     

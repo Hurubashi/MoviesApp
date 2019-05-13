@@ -2,12 +2,10 @@
 
 class MoviesModel extends Model
 {
-	public function get_data()
+	public function getData()
 	{	
-		$this->insert_data('Forest Dumb', 1994, 'DVD', 'Alex Dolbuin, Jack Daniels');
-
 		try {
-			$sql = "SELECT * FROM movie ORDER BY movie.name DESC";
+			$sql = "SELECT * FROM movie ORDER BY movie.title DESC";
 			$stmt = Database::$pdo->prepare($sql);
 			$stmt->execute();
 			$result = $stmt->fetchAll();
@@ -17,21 +15,28 @@ class MoviesModel extends Model
 		return $result;
 	}
 
-	public function insert_data($name, $year, $format, $actors) {
-		$sql = "INSERT INTO movie(`uid`, `name`, `year`, `format`, `actors`) 
-							VALUES (:uid, :name, :year, :format, :actors)";
+	public function insertData($title, $year, $format, $actors) {
+		$sql = "INSERT INTO movie(`uid`, `title`, `year`, `format`, `actors`) 
+							VALUES (:uid, :title, :year, :format, :actors)";
 		$stmt = Database::$pdo->prepare($sql);
-		$gg = uniqid($name);
-		$stmt->execute(['uid' => $gg, 'name' => $name, 
+		$uid = uniqid();
+		$stmt->execute(['uid' => $uid, 'title' => $title, 
 						'year' => $year, 'format' => $format, 'actors' => $actors]);
 	}
 
-	function search_by($title, $name){
-		$sql = "SELECT * FROM movie WHERE $title = :$title";
-        $stmt = Database::$pdo->prepare($sql);
-        $stmt->execute([$title => $value]);
+	function searchBy($row, $value){
+		$value = "%$value%";
+		$sql = "SELECT * FROM movie WHERE $row LIKE ?";
+		$stmt = Database::$pdo->prepare($sql);
+		$stmt->execute(array($value));
         $result = $stmt->fetchAll();
         return $result;
+	}
+
+	function deleteMovie($title) {
+		$sql = "DELETE FROM movie WHERE movie.title = :title";
+        $stmt = Database::$pdo->prepare($sql);
+        return $stmt->execute(['title' => $title]);
 	}
 
 

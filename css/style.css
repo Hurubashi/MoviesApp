@@ -10,6 +10,7 @@ header {
     position: relative;
     background-color:lightblue;
     text-align: center;
+    margin-bottom: 10px;
 }
 
 .centered-block {
@@ -59,7 +60,7 @@ header .description {
     box-sizing: border-box; /* Opera/IE 8+ */
 }
 
-.movies-wrapper .movie .name {
+.movies-wrapper .movie .title {
     width: 25%;
 }
 
@@ -81,18 +82,6 @@ header .description {
     margin-right: 2px;
 }
 
-@media (max-width: 480px) {
-    body {
-        font-size: 8px;
-    }
-}
-
-@media (min-width: 960px) {
-    body {
-        font-size: 12px;
-    }
-}
-
 /*Custom selector*/
 select {
     -webkit-appearance: none;
@@ -105,13 +94,13 @@ select {
     background: #2c3e50;
     background-image: none;
     display: flex;
-  }
+}
   /* Remove IE arrow */
-  select::-ms-expand {
+select::-ms-expand {
     display: none;
-  }
+}
   /* Custom Select */
-  .select {
+.select {
     position: relative;
     display: flex;
     width: 30%;
@@ -120,15 +109,15 @@ select {
     background: #2c3e50;
     overflow: hidden;
     border-radius: .25em;
-  }
-  select {
+}
+select {
     flex: 1;
     padding: 0 .5em;
     color: #fff;
     cursor: pointer;
-  }
+}
   /* Arrow */
-  .select::after {
+.select::after {
     content: '\25BC';
     position: absolute;
     top: 0;
@@ -140,31 +129,129 @@ select {
     -webkit-transition: .25s all ease;
     -o-transition: .25s all ease;
     transition: .25s all ease;
-  }
+}
   /* Transition */
-  .select:hover::after {
+.select:hover::after {
     color: #f39c12;
-  }
+}
 
-  button {
+.action-bar {
+    height: 3em;
+    margin: 0 14px 0 10px;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 5px;
+}
+
+button {
     color: #fff;
     background: #34495e;
     width: 20%;
     border-radius: .25em;
     border: none;
     cursor: pointer;
-  }
+}
 
-  input {
+.action-bar input {
     width: 50%;
     border: none;
     padding: 10px;
-  }
+}
 
-  .search-bar {
-    height: 3em;
-    margin: 0 14px 0 10px;
+.action-bar .action {
+    width: 30%;
+    height: 100%;
+    text-align: left;
+    background: #2c3e50;
+    color: #fff;
+    font-size: 10px;
+}
+
+.action-bar .action p {
+    margin-left: 5px;
+}
+
+@media (max-width: 480px) {
+    body {
+        font-size: 8px;
+    }
+}
+
+@media (min-width: 960px) {
+    body {
+        font-size: 12px;
+    }
+}
+
+/*FORM*/
+form {
+    background: rgba(40, 65, 80, 0.7);
+    padding: 40px;
+    width: 90%;
+    margin: auto;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    height: 200px;
+    text-align: center;
+    color: white;
+    font-family: 'Work Sans', sans-serif;
+
+}
+
+form input {
+    display: block;
+    width: 100%;
+    text-align: center;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid #ffffff;
+    font-family: sans-serif;
+    font-size: 16px;
+    padding: 10px 0;
+    transition: border 0.5s;
+    outline: none;
+    color: #ffffff;
+}
+
+form input[type=submit], input[type=button] {
+    display: inline;
+    border: none;
+    width: 120px;
+    background: white;
+    color: #000000;
+    font-size: 16px;
+    line-height: 25px;
+    padding: 10px 0;
+    margin: 10px;
+    border-radius: 15px;
+    cursor: pointer;
+}
+
+form input[type=submit]:hover, input[type=button]:hover {
+    color: #ffffff;
+    background-color: black;
+}
+
+form h2 {
+    color: white;
+}
+
+form a {
+    color: #ffad57;
+    text-decoration: blink;
+}
+
+form a:hover {
+    color: skyblue;
+}
+
+.container {
     display: flex;
-    justify-content: center;
-    margin-bottom: 5px;
+    flex-direction: row;
+    width: 100%;
+}
+
+::placeholder {
+    color: aliceblue;
+    opacity: 0.7;
 }
