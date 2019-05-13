@@ -36,11 +36,10 @@ function importData() {
         foreach ($elem as $row) {
             $chanks = explode(':', $row);
             if ($pattern[$i] == $chanks[0]) {
-                $movie[$i] = $chanks[1];
+                $movie[$i] = trim($chanks[1]);
             }
             $i++;
         }
-        print_r($movie);
         $movies_manager->insertData($movie[0], $movie[1], $movie[2], $movie[3]);
     }
 }
@@ -76,8 +75,8 @@ function addMovie() {
 
 function deleteMovie() {
     $movies_manager = new MoviesModel();
-    echo $_POST['title'];
-    $movies_manager->deleteMovie($_POST['title']);
+    // echo $_POST['title'];
+    var_dump($movies_manager->deleteMovie($_POST['title']));
 }
 
 ?>

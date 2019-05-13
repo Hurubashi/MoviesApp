@@ -16,6 +16,7 @@ class MoviesModel extends Model
 	}
 
 	public function insertData($title, $year, $format, $actors) {
+		var_dump($title, $year, $format, $actors);
 		$sql = "INSERT INTO movie(`uid`, `title`, `year`, `format`, `actors`) 
 							VALUES (:uid, :title, :year, :format, :actors)";
 		$stmt = Database::$pdo->prepare($sql);
