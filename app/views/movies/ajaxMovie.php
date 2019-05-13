@@ -76,7 +76,8 @@ function addMovie() {
 
 function deleteMovie() {
     $movies_manager = new MoviesModel();
-    echo $movies_manager->deleteMovie($_POST['title']);
+    echo $_POST['title'];
+    $movies_manager->deleteMovie($_POST['title']);
 }
 
 ?>

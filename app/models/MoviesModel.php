@@ -5,7 +5,7 @@ class MoviesModel extends Model
 	public function getData()
 	{	
 		try {
-			$sql = "SELECT * FROM movie ORDER BY movie.title DESC";
+			$sql = "SELECT * FROM movie ORDER BY movie.title ASC";
 			$stmt = Database::$pdo->prepare($sql);
 			$stmt->execute();
 			$result = $stmt->fetchAll();
@@ -35,7 +35,7 @@ class MoviesModel extends Model
 
 	function deleteMovie($title) {
 		$sql = "DELETE FROM movie WHERE movie.title = :title";
-        $stmt = Database::$pdo->prepare($sql);
+		$stmt = Database::$pdo->prepare($sql);
         return $stmt->execute(['title' => $title]);
 	}
 
