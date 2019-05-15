@@ -23,13 +23,13 @@ class Router
 		}
 
 		// Change names to fit controller, model, action
-		$model_name = $controller_name.'Model';
-		$controller_name = $controller_name.'Controller';
+		$model_name = ucfirst($controller_name) .'Model';
+		$controller_name = ucfirst($controller_name) .'Controller';
 		$action_name = 'action_'.$action_name;
 
 		// подцепляем файл с классом модели (файла модели может и не быть)
 
-		$model_file = strtolower($model_name).'.php';
+		$model_file = $model_name .'.php';
 		$model_path = "app/models/".$model_file;
 		if(file_exists($model_path))
 		{
