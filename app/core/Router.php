@@ -37,7 +37,7 @@ class Router
 		}
 
 		// подцепляем файл с классом контроллера
-		$controller_file = strtolower($controller_name).'.php';
+		$controller_file = $controller_name.'.php';
 		$controller_path = "app/controllers/".$controller_file;
 		if(file_exists($controller_path))
 		{
