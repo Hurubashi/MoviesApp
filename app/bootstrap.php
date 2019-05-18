@@ -1,6 +1,6 @@
 <?php
-require_once 'core/model.php';
-require_once 'core/view.php';
-require_once 'core/controller.php';
-require_once 'core/router.php';
+require_once 'core/Model.php';
+require_once 'core/View.php';
+require_once 'core/Controller.php';
+require_once 'core/Router.php';
 Router::start();

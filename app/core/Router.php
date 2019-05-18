@@ -4,32 +4,32 @@ class Router
 {
 	static function start()
 	{
-		// контроллер и действие по умолчанию
+		// Default controller and action
 		$controller_name = 'Movies';
-		$action_name = 'main';
+		$action_name = 'index';
 		
 		$routes = explode('/', $_SERVER['REQUEST_URI']);
 
-		// получаем имя контроллера
+		// Get controller name
 		if ( !empty($routes[1]) )
 		{	
 			$controller_name = $routes[1];
 		}
 		
-		// получаем имя экшена
+		// Get action name
 		if ( !empty($routes[2]) )
 		{
 			$action_name = $routes[2];
 		}
 
-		// добавляем префиксы
-		$model_name = $controller_name.'Model';
-		$controller_name = $controller_name.'Controller';
+		// Change names to fit controller, model, action
+		$model_name = ucfirst($controller_name) .'Model';
+		$controller_name = ucfirst($controller_name) .'Controller';
 		$action_name = 'action_'.$action_name;
 
 		// подцепляем файл с классом модели (файла модели может и не быть)
 
-		$model_file = strtolower($model_name).'.php';
+		$model_file = $model_name .'.php';
 		$model_path = "app/models/".$model_file;
 		if(file_exists($model_path))
 		{
@@ -37,7 +37,7 @@ class Router
 		}
 
 		// подцепляем файл с классом контроллера
-		$controller_file = strtolower($controller_name).'.php';
+		$controller_file = $controller_name.'.php';
 		$controller_path = "app/controllers/".$controller_file;
 		if(file_exists($controller_path))
 		{

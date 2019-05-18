@@ -2,47 +2,45 @@
 
 class MoviesModel extends Model
 {
-	public function get_data()
+	public function getData()
 	{	
-		return array(
-			
-			array(
-                'name' => 'Forest Dumb',
-				'year' => '2012',
-				'format' => 'DVD',
-				'actors' => 'Alex Dolbuin, Jack Daniels'
-			),
-			array(
-                'name' => 'Hole, big and black',
-				'year' => '2016',
-				'format' => 'TNT',
-				'actors' => 'Snoop Dogg, 2Pac'
-			),
-			array(
-                'name' => 'Big big Bang',
-				'year' => '2020',
-				'format' => 'TNT',
-				'actors' => 'John Nitroglycerin, Anna Tetryl, John Nitroglycerin, Anna Tetryl, John Nitroglycerin, Anna Tetryl'
-			),
-			array(
-                'name' => 'Forest Dumb',
-				'year' => '1994',
-				'format' => 'DVD',
-				'actors' => 'Alex Dolbuin, Jack Daniels'
-			),
-			array(
-                'name' => 'The Shawshank Redemption',
-				'year' => '2016',
-				'format' => 'TNT',
-				'actors' => 'Snoop Dogg, 2Pac'
-			),
-			array(
-                'name' => ' The Lord of the Rings: The Return of the King',
-				'year' => '2003',
-				'format' => 'TNT',
-				'actors' => 'John Nitroglycerin, Anna Tetryl, John Nitroglycerin, Anna Tetryl, John Nitroglycerin, Anna Tetryl'
-			)
-			// todo
-		);
+		try {
+			$sql = "SELECT * FROM movie ORDER BY movie.title ASC";
+			$stmt = Database::$pdo->prepare($sql);
+			$stmt->execute();
+			$result = $stmt->fetchAll();
+		} catch (PDOException $e){
+			$result = handle_sql_errors($selectQuery, $e->getMessage());
+		}
+		return $result;
 	}
+
+	public function insertData($title, $year, $format, $actors) {
+		$sql = "INSERT INTO movie(`uid`, `title`, `year`, `format`, `actors`) 
+							VALUES (:uid, :title, :year, :format, :actors)";
+		$stmt = Database::$pdo->prepare($sql);
+		$uid = uniqid();
+		$stmt->execute(['uid' => $uid, 
+						'title' => htmlspecialchars($title), 
+						'year' => htmlspecialchars($year), 
+						'format' => htmlspecialchars($format), 
+						'actors' => htmlspecialchars($actors)]);					
+	}
+
+	function searchBy($row, $value){
+		$value = "%$value%";
+		$sql = "SELECT * FROM movie WHERE $row LIKE ?";
+		$stmt = Database::$pdo->prepare($sql);
+		$stmt->execute(array(htmlspecialchars($value)));
+        $result = $stmt->fetchAll();
+        return $result;
+	}
+
+	function deleteMovie($title) {
+		$sql = "DELETE FROM movie WHERE movie.title = :title";
+		$stmt = Database::$pdo->prepare($sql);
+        return $stmt->execute(['title' => htmlspecialchars($title)]);
+	}
+
+
 }
