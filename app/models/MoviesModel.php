@@ -42,5 +42,4 @@ class MoviesModel extends Model
         return $stmt->execute(['title' => htmlspecialchars($title)]);
 	}
 
-
 }

@@ -74,11 +74,14 @@ function addMovie() {
     ajaxRequest('POST', data, realoadPage);
 }
 
+<<<<<<< HEAD
 // On reset Click
 function reset() {
     realoadPage();
 }
 
+=======
+>>>>>>> 36ae8eae91abd3c1fb42a809221de6c88d2f6a53
 //Delete Movie
 function deleteMovie() {
     const title = document.getElementById('titleToDelete');
@@ -100,6 +103,7 @@ function showHideForm() {
     addMovieForm.hidden = !addMovieForm.hidden;
 }
 
+<<<<<<< HEAD
 // Validate Year
 function validateYear(year)
 {
@@ -118,3 +122,6 @@ function validateYear(year)
         }
     }
 }
+=======
+
+>>>>>>> 36ae8eae91abd3c1fb42a809221de6c88d2f6a53
