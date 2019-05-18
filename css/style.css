@@ -134,7 +134,6 @@ select {
 .select:hover::after {
     color: #f39c12;
 }
-<<<<<<< HEAD
 
 .action-bar {
     height: 3em;
@@ -144,17 +143,6 @@ select {
     margin-bottom: 5px;
 }
 
-=======
-
-.action-bar {
-    height: 3em;
-    margin: 0 14px 0 10px;
-    display: flex;
-    justify-content: center;
-    margin-bottom: 5px;
-}
-
->>>>>>> 36ae8eae91abd3c1fb42a809221de6c88d2f6a53
 button {
     color: #fff;
     background: #34495e;
@@ -162,10 +150,7 @@ button {
     border-radius: .25em;
     border: none;
     cursor: pointer;
-<<<<<<< HEAD
     margin: 1;
-=======
->>>>>>> 36ae8eae91abd3c1fb42a809221de6c88d2f6a53
 }
 
 .action-bar input {
@@ -181,10 +166,7 @@ button {
     background: #2c3e50;
     color: #fff;
     font-size: 10px;
-<<<<<<< HEAD
     border-radius: 3px;
-=======
->>>>>>> 36ae8eae91abd3c1fb42a809221de6c88d2f6a53
 }
 
 .action-bar .action p {
@@ -195,32 +177,23 @@ button {
     body {
         font-size: 8px;
     }
-<<<<<<< HEAD
-
     form {
         font-size: 8px;
     }
-=======
->>>>>>> 36ae8eae91abd3c1fb42a809221de6c88d2f6a53
 }
 
 @media (min-width: 960px) {
     body {
         font-size: 12px;
     }
-<<<<<<< HEAD
-
     form {
         font-size: 12px;
     }
-=======
->>>>>>> 36ae8eae91abd3c1fb42a809221de6c88d2f6a53
 }
 
 /*FORM*/
 form {
     background: rgba(40, 65, 80, 0.7);
-<<<<<<< HEAD
     padding: 30px;
     width: auto;
     margin: 0 14px 10px 10px;
@@ -229,18 +202,6 @@ form {
     color: white;
     font-family: 'Work Sans', sans-serif;
     font-size: 9px;
-=======
-    padding: 40px;
-    width: 90%;
-    margin: auto;
-    margin-top: 10px;
-    margin-bottom: 20px;
-    height: 200px;
-    text-align: center;
-    color: white;
-    font-family: 'Work Sans', sans-serif;
-
->>>>>>> 36ae8eae91abd3c1fb42a809221de6c88d2f6a53
 }
 
 form input {
@@ -252,11 +213,7 @@ form input {
     border-bottom: 1px solid #ffffff;
     font-family: sans-serif;
     font-size: 16px;
-<<<<<<< HEAD
     padding: 5px 0;
-=======
-    padding: 10px 0;
->>>>>>> 36ae8eae91abd3c1fb42a809221de6c88d2f6a53
     transition: border 0.5s;
     outline: none;
     color: #ffffff;
@@ -265,11 +222,7 @@ form input {
 form input[type=submit], input[type=button] {
     display: inline;
     border: none;
-<<<<<<< HEAD
     width: 100px;
-=======
-    width: 120px;
->>>>>>> 36ae8eae91abd3c1fb42a809221de6c88d2f6a53
     background: white;
     color: #000000;
     font-size: 16px;
@@ -302,14 +255,11 @@ form a:hover {
     display: flex;
     flex-direction: row;
     width: 100%;
-<<<<<<< HEAD
-=======
 }
 
 ::placeholder {
     color: aliceblue;
     opacity: 0.7;
->>>>>>> 36ae8eae91abd3c1fb42a809221de6c88d2f6a53
 }
 
 ::placeholder {

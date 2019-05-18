@@ -76,8 +76,6 @@ function addMovie() {
     $actors = trim($_POST['actors']);
     if (!empty($title) && !empty($year) && !empty($format) && !empty($actors))
         $movies_manager->insertData($title, $year, $format, $actors);
-    $movies_manager->insertData($_POST['title'], $_POST['year'], 
-                            $_POST['format'], $_POST['actors']);
 }
 
 function deleteMovie() {
