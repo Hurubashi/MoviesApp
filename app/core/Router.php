@@ -27,7 +27,7 @@ class Router
 		$controller_name = ucfirst($controller_name) .'Controller';
 		$action_name = 'action_'.$action_name;
 
-		// подцепляем файл с классом модели (файла модели может и не быть)
+		// Check if model exist and include if it is
 
 		$model_file = $model_name .'.php';
 		$model_path = "app/models/".$model_file;
@@ -36,7 +36,7 @@ class Router
 			include "app/models/".$model_file;
 		}
 
-		// подцепляем файл с классом контроллера
+		// Check if controller exist and include if it is
 		$controller_file = $controller_name.'.php';
 		$controller_path = "app/controllers/".$controller_file;
 		if(file_exists($controller_path))
@@ -45,24 +45,16 @@ class Router
 		}
 		else
 		{
-			/*
-			правильно было бы кинуть здесь исключение,
-			но для упрощения сразу сделаем редирект на страницу 404
-			*/
 			Router::ErrorPage404();
-			// echo "file no esist!";
 		}
 		
 		if(class_exists($controller_name) && method_exists($controller_name, $action_name))
 		{
-			// вызываем действие контроллера
 			$controller = new $controller_name;
 			$controller->$action_name();
 		}
 		else
 		{
-			// echo "Controller or action does not exists";
-			// здесь также разумнее было бы кинуть исключение
 			Router::ErrorPage404();
 		}
 	

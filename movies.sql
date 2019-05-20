@@ -39,11 +39,21 @@ CREATE TABLE `movie` (
 
 DELIMITER $
  
-CREATE PROCEDURE `check_movie`(IN year INT(4))
+CREATE PROCEDURE `check_movie`(IN year INT(4), IN title varchar(255))
 BEGIN
     IF year < 1878 THEN
         SIGNAL SQLSTATE '45000'
-           SET MESSAGE_TEXT = 'check constraint on parts.cost failed';
+           SET MESSAGE_TEXT = 'year can not be lower than 1878';
+    END IF;
+
+    IF year > 2030 THEN
+        SIGNAL SQLSTATE '45001'
+           SET MESSAGE_TEXT = 'year can not be higher than 2030';
+    END IF;
+
+    IF LENGTH(title) = 0 THEN
+        SIGNAL SQLSTATE '45002'
+           SET MESSAGE_TEXT = 'title can not be empty';
     END IF;
 END$
 DELIMITER ;
@@ -52,7 +62,7 @@ DELIMITER $
 CREATE TRIGGER `movie_before_insert` BEFORE INSERT ON `movie`
 FOR EACH ROW
 BEGIN
-    CALL check_movie(new.year);
+    CALL check_movie(new.year, new.title);
 END$   
 DELIMITER ;
 
@@ -61,7 +71,7 @@ DELIMITER $
 CREATE TRIGGER `movie_before_update` BEFORE UPDATE ON `movie`
 FOR EACH ROW
 BEGIN
-    CALL check_movie(new.year);
+    CALL check_movie(new.year, new.title);
 END$   
 DELIMITER ;
 
